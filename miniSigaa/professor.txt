@@ -1,0 +1,91 @@
+package miniSigaa0;
+
+import javax.swing.JOptionPane;
+
+public class Professor extends Pessoa{
+
+    static String parseProfessor(String showInputDialog) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    private int siape;
+    
+public Professor(){
+        super();
+    }
+    public void setNomeProf(String nomeProf){
+        super.setNomePessoa (nomeProf);
+    }
+    
+    public String getNomeProf(){
+        return super.getNomePessoa();
+    }
+    
+        @Override
+    public void setCpf(int cpf){
+        super.setCpf (cpf);
+    }
+    
+    @Override
+    public int getCpf(){
+        return super.getCpf();
+    }
+    
+    @Override
+    public void setTelefone(String telefone){
+        super.setTelefone (telefone);
+    }
+    
+    @Override
+    public String getTelefone(){
+        return super.getTelefone();
+    }
+    
+    @Override
+    public void setEndereco(String endereco){
+        super.setEndereco (endereco);
+    }
+    
+    @Override
+    public String getEndereco(){
+        return super.getEndereco();
+    }
+    
+    @Override
+    public void setEmail(String email){
+        super.setEmail (email);
+    }
+    
+    @Override
+    public String getEmail(){
+        return super.getEmail();
+    }
+    
+    public int getSiape() {
+        return siape;
+    }
+
+    public void setSiape(int siape) {
+        this.siape = siape;
+    }
+
+    public void setCadastro() {
+        Professor p1= new Professor();
+        String nomePf = (JOptionPane.showInputDialog("Nome do professor:\n"));
+        p1.setNomeProf(nomePf);
+
+        int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF(Somente numeros):\n"));
+        p1.setCpf(cpf);
+
+        String telefone = (JOptionPane.showInputDialog("Telefone: \n"));
+        p1.setTelefone(telefone);
+
+        String endereco = (JOptionPane.showInputDialog("Endereco: \n"));
+        p1.setEndereco(endereco);
+
+        String email = (JOptionPane.showInputDialog("Email: \n"));
+        p1.setEmail(email);
+
+        int siape = Integer.parseInt(JOptionPane.showInputDialog("Siape:\n"));
+        p1.setSiape(siape);
+    }
+}

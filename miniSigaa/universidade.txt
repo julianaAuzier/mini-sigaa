@@ -1,0 +1,26 @@
+
+
+package miniSigaa0;
+
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class Universidade {
+    private ArrayList listaCursos;
+
+    public ArrayList getListaCursos() {
+        return listaCursos;
+    }
+
+    public void setListaCursos(ArrayList listaCursos) {
+        this.listaCursos = listaCursos;
+    }
+    
+    public void addListaCurso(ArrayList <Curso> cursos) {
+        if (this.listaCursos == null) {
+            this.setListaCursos(cursos);
+        } else {
+            JOptionPane.showMessageDialog(null, "Curso " + getListaCursos() + ", Já existe!");
+        }
+    }
+}

@@ -1,0 +1,136 @@
+package miniSigaa0;
+
+import java.util.ArrayList;
+import java.util.Date;
+import javax.swing.JOptionPane;
+
+public class Aluno extends Pessoa{
+
+    private String disciplina;
+    private int matricula;
+    private ArrayList<Nota> notas;
+    private Turma turma;
+    private Curso curso;
+    
+    public void addTurma(Turma turma) {
+        if (this.turma == null) {
+            this.setTurma(turma);
+        } else {
+            System.out.println("Aluno " + getNomeAluno() + ", Já está matricula em uma turma");
+        }
+    }
+
+    public String getDisciplina() {
+        return disciplina;
+    }
+
+    public void setDisciplina(String disciplina) {
+        this.disciplina = disciplina;
+    }
+    
+    public void setNomeAluno(String nomeAluno){
+        super.setNomePessoa (nomeAluno);
+    }
+    
+    public String getNomeAluno(){
+        return super.getNomePessoa();
+    }
+    
+    @Override
+    public void setCpf(int cpf){
+        super.setCpf (cpf);
+    }
+    
+    @Override
+    public int getCpf(){
+        return super.getCpf();
+    }
+    
+    @Override
+    public void setTelefone(String telefone){
+        super.setTelefone (telefone);
+    }
+    
+    @Override
+    public String getTelefone(){
+        return super.getTelefone();
+    }
+    
+    @Override
+    public void setEndereco(String endereco){
+        super.setEndereco (endereco);
+    }
+    
+    @Override
+    public String getEndereco(){
+        return super.getEndereco();
+    }
+    
+    @Override
+    public void setEmail(String email){
+        super.setEmail (email);
+    }
+    
+    @Override
+    public String getEmail(){
+        return super.getEmail();
+    }
+    
+    public int getMatricula() {
+        return matricula;
+    }
+
+    public void setMatricula(int matricula) {
+        this.matricula = matricula;
+    }
+
+    public ArrayList<Nota> getNotas() {
+        return notas;
+    }
+
+    public void setNotas(ArrayList<Nota> notas) {
+        this.notas = notas;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
+    @Override
+    public String toString() {
+        return "Aluno: " + matricula + ", " + getTurma();
+    }
+
+    public void setCadastro() {
+        Aluno a1 = new Aluno();
+        a1.setNomeAluno(JOptionPane.showInputDialog("Nome do aluno: "));
+
+        int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF(Somente numeros):"));
+        a1.setCpf(cpf);
+
+        String telefone = (JOptionPane.showInputDialog("Telefone:"));
+        a1.setTelefone(telefone);
+
+        String endereco = (JOptionPane.showInputDialog("Endereco:"));
+        a1.setEndereco(endereco);
+
+        String email = (JOptionPane.showInputDialog("Email:"));
+        a1.setEmail(email);
+
+        int matricula = Integer.parseInt(JOptionPane.showInputDialog("Matricula:\n"));
+        a1.setMatricula(matricula);
+    }
+
+}

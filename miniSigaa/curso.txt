@@ -1,0 +1,63 @@
+
+package miniSigaa0;
+
+import java.util.ArrayList;
+
+public class Curso {
+
+    private String nomeCurso;
+    private String duracao;
+    private String disciplinas;
+    private ArrayList listaAlunos;
+    private ArrayList listaProfessores;
+    private ArrayList listaDisciplinas;
+    
+    public String getNomeCurso() {
+        return nomeCurso;
+    }
+
+    public void setNomeCurso(String nomeCurso) {
+        this.nomeCurso = nomeCurso;
+    }
+
+    public String getDuracao() {
+        return duracao;
+    }
+
+    public void setDuracao(String duracao) {
+        this.duracao = duracao;
+    }
+
+    public String getDisciplinas() {
+        return disciplinas;
+    }
+
+    public void setDisciplinas(String disciplinas) {
+        this.disciplinas = disciplinas;
+    }
+
+    public ArrayList getListaAlunos() {
+        return listaAlunos;
+    }
+
+    public void setListaAlunos(ArrayList listaAlunos) {
+        this.listaAlunos = listaAlunos;
+    }
+
+    public ArrayList getListaProfessores() {
+        return listaProfessores;
+    }
+
+    public void setListaProfessores(ArrayList listaProfessores) {
+        this.listaProfessores = listaProfessores;
+    }
+
+    public ArrayList getListaDisciplinas() {
+        return listaDisciplinas;
+    }
+
+    public void setListaDisciplinas(ArrayList listaDisciplinas) {
+        this.listaDisciplinas = listaDisciplinas;
+    }
+    
+}

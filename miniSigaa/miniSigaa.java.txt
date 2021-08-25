@@ -1,0 +1,236 @@
+//1.CRIAR CURSO // OK
+//2.CRIAR TURMA
+//3.INSERIR PROFESSOR // OK
+//4.INSERIR ALUNO
+//5.INSERIR NOTA
+//6.VER LISTASs // OK
+
+package miniSigaa0;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+
+public class miniSigaa0 {
+
+    public static void main(String[] args) {
+    
+        int opcao;
+        String opc;
+        ArrayList <Curso> cursos = new ArrayList<>();
+        ArrayList <Disciplina> Disciplinas = new ArrayList<>();
+        ArrayList <Aluno> Alunos = new ArrayList<>();
+        ArrayList <Professor> Professores = new ArrayList<>();
+        ArrayList <Turma> Turmas = new ArrayList<>();
+
+        Universidade u0 = new Universidade();
+
+            do{
+                opc = JOptionPane.showInputDialog(null, "\nDigite:\n1: Para criar curso.\n2: Para criar turma.\n3: Para inserir professor.\n4: Para inserir aluno.\n5: Para inserir nota de aluno.\n6: Para ver listas\n0: Para sair");
+                opcao = Integer.parseInt(opc);
+
+                //1.CRIAR CURSO
+                if(opcao == 1){
+                    Curso c1 = new Curso();           
+                    c1.setNomeCurso(JOptionPane.showInputDialog("Nome do curso: \n"));
+                    c1.setDuracao(JOptionPane.showInputDialog("Duracao do curso: \n"));
+                    
+                    cursos.add(c1);
+                    u0.setListaCursos(cursos);
+
+                    JOptionPane.showMessageDialog(null, c1.getNomeCurso() + " - " + c1.getDuracao(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null,"Adicione disciplinas a este curso!");
+
+                    int numDisc;
+                    String numD;
+                    numD = JOptionPane.showInputDialog(null, "Digite o numero de disciplinas que deseja inserir:");
+                    numDisc = Integer.parseInt(numD);
+                    if (numDisc != 0){
+                        int i;                    
+                            for(i=0 ; i<numDisc ; i++){
+                                Disciplina d1 = new Disciplina();
+                                d1.setNomeDisciplina(JOptionPane.showInputDialog("Nome da disciplina: " + (i+1)));
+                                d1.setCargaHora(JOptionPane.showInputDialog("Carga horaria da disciplina:"));
+                                Disciplinas.add(d1);
+                            }
+                        c1.setListaDisciplinas(Disciplinas);
+                        
+                    }
+                }
+                //2.CRIAR TURMA
+                else if(opcao == 2){
+                    Turma t1 = new Turma();
+                    t1.setCodigo(JOptionPane.showInputDialog("Codigo da turma: \n"));
+
+                    String prof = (JOptionPane.showInputDialog("Professor: \n"));
+                    for(int i = 0; i < Professores.size(); i++){
+                        Professor p1 = Professores.get(i);
+                        if(p1.getNomeProf().equals(prof)){
+                            ArrayList <Professor> pp = new ArrayList<>();
+                            pp.add(p1);
+                            t1.setProfessor(pp);
+                            JOptionPane.showMessageDialog(null, p1.getNomeProf() + " Adicionado!");
+                        }
+                        else JOptionPane.showMessageDialog(null, "Professor nao existe!");
+                    }
+                    String alu = (JOptionPane.showInputDialog("Numero de alunos: \n"));
+                    int nAlunos = Integer.parseInt(alu);
+                    t1.setTamanho(nAlunos);
+                    for(int z = 0; z < nAlunos ; z++){
+                        String alun = JOptionPane.showInputDialog("Nome do Aluno:" + (z+1));
+                        for(int x = 0; x < Alunos.size(); x++){
+                            Aluno a1 = Alunos.get(x);
+                            if(a1.getNomeAluno().equals(alun)){
+                            ArrayList <Aluno> aa = new ArrayList<>();
+                            aa.add(a1);
+                            t1.setAluno(aa);
+                            JOptionPane.showMessageDialog(null, a1.getNomeAluno() + " Adicionado!");
+                            }
+                            else JOptionPane.showMessageDialog(null, "Aluno nao existe!");
+                        }
+                    }
+                    String dis = (JOptionPane.showInputDialog("Disciplina: \n"));
+                    for(int i = 0; i < Disciplinas.size(); i++){
+                    Disciplina d1 = Disciplinas.get(i);
+                        if(d1.getNomeDisciplina().equals(dis)){
+                        ArrayList <Disciplina> dd = new ArrayList<>();
+                        dd.add(d1);
+                        t1.setDisciplina(dd);
+                        JOptionPane.showMessageDialog(null, d1.getNomeDisciplina() + "Adicionado!");
+                        }
+                        else JOptionPane.showMessageDialog(null, "Disciplina nao existe!");
+                    }
+                    Turmas.add(t1);
+                    JOptionPane.showMessageDialog(null, t1.getCodigo(),"Foi adicionada:\n",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                //3.INSERIR PROFESSOR
+                else if(opcao == 3){
+                    Professor p1 = new Professor();
+                    p1.setCadastro();
+                    Professores.add(p1);
+                    JOptionPane.showMessageDialog(null, p1.getNomePessoa() + " - Siape: " + p1.getSiape(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                }                
+                //4.INSERIR ALUNO
+                else if(opcao == 4){
+                    Aluno a1 = new Aluno();
+                    a1.setCadastro();
+                    Alunos.add(a1);
+                   JOptionPane.showMessageDialog(null, a1.getNomeAluno() + " - " + a1.getMatricula(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                }
+                //5.INSERIR NOTA
+                else if(opcao == 5){
+                    String nT = JOptionPane.showInputDialog("Codigo da turma");
+                    for(int t = 0; t < Turmas.size(); t++){
+                        Turma t1 = Turmas.get(t);
+                        if(t1.getCodigo().equals(nT)){
+                            String nA = JOptionPane.showInputDialog("Nome do aluno");
+                            for(int a = 0; a < Alunos.size(); a++){
+                                Aluno a1 = Alunos.get(a);
+                                if(a1.getNomeAluno().equals(nA)){
+                                    Nota n1 = new Nota();
+                                    float nota1 = Integer.parseInt(JOptionPane.showInputDialog("Primeira nota:\n"));
+                                    n1.setNota1(nota1);
+
+                                    float nota2 = Integer.parseInt(JOptionPane.showInputDialog("Segunda nota:\n"));
+                                    n1.setNota2(nota2);
+
+                                    float nota3 = Integer.parseInt(JOptionPane.showInputDialog("Terceira nota:\n"));
+                                    n1.setNota3(nota3);
+
+                                    float media = (nota1 + nota2 + nota3)/3f;
+                                    n1.setMedia(media);
+                                    JOptionPane.showMessageDialog(null,nA + " - Media final: " + n1.getMedia());
+                                }
+                                else{
+                                    JOptionPane.showMessageDialog(null, "Aluno nao existe!");
+                                    break;
+                                }
+                            }
+                        }
+                        else{
+                        JOptionPane.showMessageDialog(null, "Turma nao existe!");
+                        break;
+                        }
+                    }
+                }
+                //VER LISTAS // LISTAS ESTÃO QUEBRADAS
+                else if (opcao == 6){
+                    String op = JOptionPane.showInputDialog(null, "\n1: Para listar cursos.\n2: Para listar professores.\n3: Para listar alunos.\n4: Para listar disciplinas.\n0: Para sair");
+                    int o = Integer.parseInt(op);
+                    
+                    switch(o){
+                    case 1:
+                        if(cursos == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Curso cc : cursos){
+                                JOptionPane.showMessageDialog(null, cc.getNomeCurso() + cc.getDuracao());
+                            }
+                        }
+                        break;
+                    
+                    case 2:
+                        if(Professores == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Professor cc : Professores){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeProf()+ cc.getSiape());
+                            }
+                        }
+                        break;
+                        
+                    case 3:
+                        if(Alunos == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Aluno cc : Alunos){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeAluno()+ cc.getMatricula());
+                            }
+                        }
+                        break;
+                    
+                    case 4:
+                        if(Disciplinas == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Disciplina cc : Disciplinas){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeDisciplina()+ cc.getCargaHora());
+                            }
+                        }
+                    case 0:
+                        break;
+                    }
+                }
+            }while(opcao != 0);
+    }
+    
+    /*    ArrayList<Pessoa> pessoas = new ArrayList<>();
+                    // Adiciona algumas pessoas.
+                    pessoas.add(new Pessoa("José"));
+                    pessoas.add(new Pessoa("Maria"));
+                    pessoas.add(new Pessoa("Pedro"));
+
+                    System.out.print("Pessoas cadastradas:\n");
+                    for(int i = 0; i < pessoas.size(); i++){
+                        System.out.print(pessoas.get(i).getNome() + "\n");
+                    }
+                    // Removendo Pedro:
+                    for(int i = 0; i < pessoas.size(); i++){
+                        Pessoa p = pessoas.get(i);
+                        if(p.getNome().equals("Pedro")){
+                            // Encontrou uma pessoa cadastrada com nome "Pedro".
+                            // Remove.
+                            pessoas.remove(p);
+                            // Sai do loop.
+                            break;
+                        }
+                    }
+
+                    System.out.print("Pessoas cadastradas após remoção:\n");
+                    for(int i = 0; i < pessoas.size(); i++)
+                    {
+                        System.out.print(pessoas.get(i).getNome() + "\n");
+                    }*/
+}

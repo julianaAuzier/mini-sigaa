@@ -1,0 +1,506 @@
+//1.CRIAR CURSO
+//2.CRIAR TURMA
+//3.INSERIR PROFESSOR
+//4.INSERIR ALUNO
+//5.INSERIR NOTA
+//6.VER LISTASs
+
+package miniSigaa0;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+
+public class miniSigaa0 {
+
+    public static void main(String[] args) {
+    
+        int opcao;
+        String opc;
+        ArrayList <Curso> cursos = new ArrayList<>();
+        ArrayList <Disciplina> ListaDisciplinas = new ArrayList<>();
+        ArrayList <Aluno> ListaAlunos = new ArrayList<>();
+        ArrayList <Professor> ListaProfessores = new ArrayList<>();
+        ArrayList <Nota> ListaNota = new ArrayList<>();
+        
+        Aluno a0 = new Aluno();
+        Curso c0 = new Curso();
+        Disciplina d0 = new Disciplina();
+        Professor p0 = new Professor();
+        Turma t0 = new Turma();
+        Universidade u0 = new Universidade();
+        
+            do{
+                opc = JOptionPane.showInputDialog(null, "\nDigite:\n1: Para criar curso.\n2: Para criar turma.\n3: Para inserir professor.\n4: Para inserir aluno.\n5: Para inserir nota de aluno.\n6: Para ver listas\n0 Para sair");
+                opcao = Integer.parseInt(opc);
+
+                //1.CRIAR CURSO
+                if(opcao == 1){
+                    Curso c1 = new Curso();                    
+                    c1.setNomeCurso(JOptionPane.showInputDialog("Nome do curso: \n"));
+                    /*if (nome == null || nome.equals("")) {
+                    JOptionPane.showMessageDialog(null,
+                    "Ja existe.");
+
+                    }*/
+                    c1.setDuracao(JOptionPane.showInputDialog("Duracao do curso: \n"));
+                    cursos.add(c1);
+                    
+                    int nDisc;
+                    String nD;
+                    
+                    nD = JOptionPane.showInputDialog(null, "Numero de disciplinas:\n");
+                    nDisc = Integer.parseInt(nD);
+                    if (nDisc != 0){                 
+                        int i;
+                        for(i=0 ; i<nDisc ; i++){
+                            c1.setDisciplinas(JOptionPane.showInputDialog("Nome da disciplina " + (i+1) + " do curso: \n"));
+                            c1.setListaDisciplinas(ListaDisciplinas);
+                        }
+                    }
+                    cursos.add(c1);
+                    u0.setListaCursos(cursos);
+                    
+                    JOptionPane.showMessageDialog(null, c1.getNomeCurso() + " - " + c1.getDuracao(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                }
+                else if(opcao == 7){
+                    Disciplina d1 = new Disciplina();
+                    
+                    if(c0.getNomeCurso().equals(JOptionPane.showInputDialog(null, "Escolha um curso para adicionar estas disciplinas: \n"))){
+                    
+                        int numDisc;
+                        String numD;
+                        numD = JOptionPane.showInputDialog(null, "Numero de disciplinas:\n");
+                        numDisc = Integer.parseInt(numD);
+
+                        if (numDisc != 0){
+                            int i;                    
+                                for(i=1 ; i<numDisc ; i++){
+                                    d1.setNomeDisciplina(JOptionPane.showInputDialog("Nome da disciplina: \n" + i));
+                                    d1.setCargaHora(JOptionPane.showInputDialog("Carga horaria da disciplina: \n"));
+                                    d0 = d1;
+                                    ListaDisciplinas.add(d0);
+                                }
+                        }
+                        c0.setListaDisciplinas(ListaDisciplinas);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Curso não existe!\n");
+                    }
+
+                //2.CRIAR TURMA
+                else if(opcao == 2){
+                    //PROBLEMA - ADICIONAR PROFESSOR E DISCIPLINA PELO JOPTIONPANE
+                    Turma t1 = new Turma();
+                    
+                    t1.setCodigo(JOptionPane.showInputDialog("Codigo da turma: \n"));
+                    
+                    int nAlunos = t1.getTamanho();
+                    if (nAlunos != 0){
+                        int i;
+                        for(i=0 ; i<nAlunos ; i++){
+                            
+                            String alunos= (JOptionPane.showInputDialog("Nome do aluno " + (i+1)));
+                           // t1.setAluno(alunos);
+                        }
+                    }
+
+                //3.INSERIR PROFESSOR
+                else if(opcao == 3){
+                    
+                    Professor p1 = new Professor();
+                    
+                    String nomePessoa = (JOptionPane.showInputDialog("Nome do professor:\n"));
+                    p1.setNomeProf(nomePessoa);
+                    
+                    int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF:\n"));
+                    p1.setCpf(cpf);
+                    
+                    String telefone = (JOptionPane.showInputDialog("Telefone: \n"));
+                    p1.setTelefone(telefone);
+                    
+                    String endereco = (JOptionPane.showInputDialog("Endereco: \n"));
+                    p1.setEndereco(endereco);
+                    
+                    String email = (JOptionPane.showInputDialog("Email: \n"));
+                    p1.setEmail(email);
+                    
+                    int siape = Integer.parseInt(JOptionPane.showInputDialog("Siape:\n"));
+                    p1.setSiape(siape);
+
+                    ListaProfessores.add(p1);
+                    JOptionPane.showMessageDialog(null, p1.getNomePessoa() + " - Siape: " + p1.getSiape(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                //4.INSERIR ALUNO
+                else if(opcao == 4){
+                    
+                   Aluno a1 = new Aluno();
+                   
+                   int nAl;
+                    String nA;
+                    
+                    nA = JOptionPane.showInputDialog(null, "Quantos Alunos:\n");
+                    nAl = Integer.parseInt(nA);
+                    if (nAl != 0){                 
+                        int i;
+                        for(i=0 ; i<nAl ; i++){
+                            a1.setNomeAluno(JOptionPane.showInputDialog("Nome do aluno " + (i+1)));
+
+                            String nomePessoa = (JOptionPane.showInputDialog("Nome do aluno:\n"));
+                            a1.setNomeAluno(nomePessoa);
+                            
+                            int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF:\n"));
+                            a1.setCpf(cpf);
+
+                            String telefone = (JOptionPane.showInputDialog("Telefone: \n"));
+                            a1.setTelefone(telefone);
+
+                            String endereco = (JOptionPane.showInputDialog("Endereco: \n"));
+                            a1.setEndereco(endereco);
+
+                            String email = (JOptionPane.showInputDialog("Email: \n"));
+                            a1.setEmail(email);
+
+                            int matricula = Integer.parseInt(JOptionPane.showInputDialog("Matricula:\n"));
+                            a1.setMatricula(matricula);
+                        }
+                    }
+                   ListaAlunos.add(a1);
+
+                   JOptionPane.showMessageDialog(null, a1.getNomeAluno() + " - " + a1.getMatricula(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+
+                }
+
+                //5.INSERIR NOTA
+                else if(opcao == 5){
+                    //PROBLEMA - ESCOLHER ALUNO E TURMA PARA INSERIR A NOTA
+                    Nota n1 = new Nota();
+                    float nota1 = Integer.parseInt(JOptionPane.showInputDialog("Primeira nota:\n"));
+                    n1.setNota1(nota1);
+                    
+                    float nota2 = Integer.parseInt(JOptionPane.showInputDialog("Segunda nota:\n"));
+                    n1.setNota2(nota2);
+                    
+                    float nota3 = Integer.parseInt(JOptionPane.showInputDialog("Terceira nota:\n"));
+                    n1.setNota3(nota3);
+                    
+                    float media = (nota1 + nota2 + nota3)/3f;
+                    n1.setMedia(media);
+
+                    //JOptionPane.showMessageDialog(null,"Media final:\n" + n1.getMedia(media),JOptionPane.INFORMATION_MESSAGE);
+                    }
+                //VER LISTAS
+                else if (opcao == 6){
+                    String op = JOptionPane.showInputDialog(null, "\n1: Para listar cursos.\n2: Para listar professores.\n3: Para listar alunos.\n0: Para sair");
+                    int o = Integer.parseInt(op);
+                    
+                    switch(o){
+                    case 1:
+                        if(cursos != null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Curso cc : cursos){
+                                JOptionPane.showMessageDialog(null,"* Nome: " + cc.getNomeCurso());
+                            }
+                        }
+                        break;
+                    
+                    case 2:
+                        if(ListaProfessores != null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Professor cc : ListaProfessores){
+                                JOptionPane.showMessageDialog(null,"* Nome: " + cc.getNomeProf());
+                                JOptionPane.showMessageDialog(null,"* Siape: " + cc.getSiape());
+                            }
+                        }
+                        break;
+                        
+                    case 3:
+                        if(ListaAlunos != null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Aluno cc : ListaAlunos){
+                                JOptionPane.showMessageDialog(null,"* Nome: " + cc.getNomeAluno());
+                                JOptionPane.showMessageDialog(null,"* Siape: " + cc.getMatricula());
+                            }
+                        }
+                        break;
+                        
+                    case 0:
+                        break;
+                    }
+                }
+            }while(opcao != 0);
+    }
+}
+
+
+
+
+
+
+
+
+
+/*
+package miniSigaa0;
+
+import java.util.ArrayList;
+import java.util.Iterator;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.showMessageDialog;
+
+public class miniSigaa0 {
+
+    @SuppressWarnings("empty-statement")
+    public static void main(String[] args) {
+    
+        int opcao;
+        String opc;
+        ArrayList <Curso> cursos = new ArrayList<>();
+        ArrayList <Disciplina> ListaDisciplinas = new ArrayList<>();
+        ArrayList <Aluno> ListaAlunos = new ArrayList<>();
+        ArrayList <Professor> ListaProfessores = new ArrayList<>();
+        ArrayList <Nota> ListaNota = new ArrayList<>();
+        
+        Aluno a0 = new Aluno();
+        Curso c0 = new Curso();
+        Disciplina d0 = new Disciplina();
+        Professor p0 = new Professor();
+        Turma t0 = new Turma();
+        Universidade u0 = new Universidade();
+        
+        opc = JOptionPane.showInputDialog(null, "\nDigite:\n1: Para criar curso.\n2: Para criar turma.\n3: Para inserir professor.\n4: Para inserir aluno.\n5: Para inserir nota de aluno.\n6: Para ver listas.\n7: Para criar turma.\n0: Para sair.",JOptionPane.QUESTION_MESSAGE);
+        opcao = Integer.parseInt(opc);
+        
+        /*
+        if((opcao != 1)
+        || (opcao != 2)
+        || (opcao != 3)
+        || (opcao != 4)
+        || (opcao != 5)
+        || (opcao != 6)
+        || (opcao != 7)
+        || (opcao != 0)){
+        JOptionPane.showMessageDialog(null,"Opcao invalida!");
+        }
+        else{*/
+        
+            do{
+                //1.CRIAR CURSO
+                if(opcao == 1){
+                    Curso c1 = new Curso();
+
+                    String nC = JOptionPane.showInputDialog(null, "Quantos Cursos:\n");
+                    int nCur = Integer.parseInt(nC);
+                    if (nCur != 0){                 
+                        int i;
+                        for(i=0 ; i<nCur ; i++){
+                            c1.setNomeCurso(JOptionPane.showInputDialog("Nome do curso: \n"));
+                            c1.setDuracao(JOptionPane.showInputDialog("Duracao do curso: \n"));
+                        }
+
+                        cursos.add(c1);
+                        u0.setListaCursos(cursos);
+                        JOptionPane.showMessageDialog(null, u0.getListaCursos(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                        //JOptionPane.showMessageDialog(null, c1.getNomeCurso() + " - " + c1.getDuracao(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    
+                }
+
+                else if(opcao == 7){
+                    Disciplina d1 = new Disciplina();
+                    
+                    if(c0.getNomeCurso().equals(JOptionPane.showInputDialog(null, "Escolha um curso para adicionar estas disciplinas: \n"))){
+                    
+                        int numDisc;
+                        String numD;
+                        numD = JOptionPane.showInputDialog(null, "Numero de disciplinas:\n");
+                        numDisc = Integer.parseInt(numD);
+
+                        if (numDisc != 0){
+                            int i;                    
+                                for(i=1 ; i<numDisc ; i++){
+                                    d1.setNomeDisciplina(JOptionPane.showInputDialog("Nome da disciplina: \n" + i));
+                                    d1.setCargaHora(JOptionPane.showInputDialog("Carga horaria da disciplina: \n"));
+                                    d0 = d1;
+                                    ListaDisciplinas.add(d0);
+                                }
+                        }
+                        c0.setListaDisciplinas(ListaDisciplinas);
+                    }
+                    else
+                        JOptionPane.showMessageDialog(null, "Curso não existe!\n");
+                    }
+
+                //2.CRIAR TURMA
+                else if(opcao == 2){
+                    //PROBLEMA - ADICIONAR PROFESSOR E DISCIPLINA PELO JOPTIONPANE
+                    Turma t1 = new Turma();
+                    
+                    t1.setCodigo(JOptionPane.showInputDialog("Codigo da turma: \n"));
+                    
+                    int nAlunos = t1.getTamanho();
+                    if (nAlunos != 0){
+                        int i;
+                        for(i=0 ; i<nAlunos ; i++){
+                            
+                            String alunos= (JOptionPane.showInputDialog("Nome do aluno " + (i+1)));
+                           // t1.setAluno(alunos);
+                        }
+                    }
+                    
+                    
+                    JOptionPane.showMessageDialog(null, t1.getCodigo(),"Foi adicionada:\n",JOptionPane.INFORMATION_MESSAGE);
+                }
+
+                //3.INSERIR PROFESSOR
+                else if(opcao == 3){
+                    
+                    Professor p1 = new Professor();
+                    
+                    String nomePessoa = (JOptionPane.showInputDialog("Nome do professor:\n"));
+                    p1.setNomeProf(nomePessoa);
+                    
+                    int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF:\n"));
+                    p1.setCpf(cpf);
+                    
+                    String telefone = (JOptionPane.showInputDialog("Telefone: \n"));
+                    p1.setTelefone(telefone);
+                    
+                    String endereco = (JOptionPane.showInputDialog("Endereco: \n"));
+                    p1.setEndereco(endereco);
+                    
+                    String email = (JOptionPane.showInputDialog("Email: \n"));
+                    p1.setEmail(email);
+                    
+                    int siape = Integer.parseInt(JOptionPane.showInputDialog("Siape:\n"));
+                    p1.setSiape(siape);
+
+                    ListaProfessores.add(p1);
+                    JOptionPane.showMessageDialog(null, p1.getNomePessoa() + " - Siape: " + p1.getSiape(),"Foi adicionado:\n",JOptionPane.INFORMATION_MESSAGE);
+                }
+                
+                //4.INSERIR ALUNO
+                else if(opcao == 4){
+                   Aluno a1 = new Aluno();
+
+                    int nAl;
+                    String nA;
+                    nA = JOptionPane.showInputDialog("Quantos Alunos?",JOptionPane.QUESTION_MESSAGE);
+                    nAl = Integer.parseInt(nA);
+                    
+                    if (nAl != 0){
+                        int i;
+                        for(i=1 ; i<nAl ; i++){
+                            a1.setNomeAluno(JOptionPane.showInputDialog("Nome do aluno " + i));
+                            
+                            /*int cpf = Integer.parseInt(JOptionPane.showInputDialog("CPF:\n"));
+                            a1.setCpf(cpf);
+
+                            String telefone = (JOptionPane.showInputDialog("Telefone: \n"));
+                            a1.setTelefone(telefone);
+
+                            String endereco = (JOptionPane.showInputDialog("Endereco: \n"));
+                            a1.setEndereco(endereco);
+
+                            String email = (JOptionPane.showInputDialog("Email: \n"));
+                            a1.setEmail(email); */
+
+                            int matricula = Integer.parseInt(JOptionPane.showInputDialog("Matricula:\n"));
+                            a1.setMatricula(matricula);
+                        }
+
+                        ListaAlunos.add(a1);
+                        c0.setListaAlunos(ListaAlunos);
+                        
+                        for(i = 0; i < ListaAlunos.size(); i++){
+                            JOptionPane.showMessageDialog(null,ListaAlunos,"Foi adicionado:",JOptionPane.INFORMATION_MESSAGE); 
+                        }
+                    }
+                    else break;                 
+                }
+                
+
+                //5.INSERIR NOTA
+                else if(opcao == 5){
+                    //PROBLEMA - ESCOLHER ALUNO E TURMA PARA INSERIR A NOTA
+                    Nota n1 = new Nota();
+                    float nota1 = Integer.parseInt(JOptionPane.showInputDialog("Primeira nota:\n"));
+                    n1.setNota1(nota1);
+                    
+                    float nota2 = Integer.parseInt(JOptionPane.showInputDialog("Segunda nota:\n"));
+                    n1.setNota2(nota2);
+                    
+                    float nota3 = Integer.parseInt(JOptionPane.showInputDialog("Terceira nota:\n"));
+                    n1.setNota3(nota3);
+                    
+                    float media = (nota1 + nota2 + nota3)/3f;
+                    n1.setMedia(media);
+
+                    //JOptionPane.showMessageDialog(null,"Media final:\n" + n1.getMedia(media),JOptionPane.INFORMATION_MESSAGE);
+                    }
+                //VER LISTAS
+                else if (opcao == 6){
+                    String op = JOptionPane.showInputDialog(null, "\n1: Para listar cursos.\n2: Para listar professores.\n3: Para listar alunos.\n0: Para sair");
+                    int o = Integer.parseInt(op);
+                    
+                    switch(o){
+                    case 1:
+                        if(cursos == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Curso cc : cursos){
+                                JOptionPane.showMessageDialog(null,"* Cursos: " + cc.getNomeCurso());
+                            }
+                        }
+                        break;
+                    
+                    case 2:
+                        if(ListaProfessores == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Professor cc : ListaProfessores){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeProf());
+                                JOptionPane.showMessageDialog(null,"Siape: " + cc.getSiape());
+                            }
+                        }
+                        break;
+                        
+                    case 3:
+                        if(ListaAlunos == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Aluno cc : ListaAlunos){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeAluno());
+                                JOptionPane.showMessageDialog(null,"Matricula: " + cc.getMatricula());
+                            }
+                        }
+                        break;
+                    
+                    case 4:
+                        if(ListaDisciplinas == null){
+                        JOptionPane.showMessageDialog(null,"Lista vazia!");
+                        }
+                        else{
+                            for (Disciplina cc : ListaDisciplinas){
+                                JOptionPane.showMessageDialog(null,"Nome: " + cc.getNomeDisciplina());
+                                JOptionPane.showMessageDialog(null,"Matricula: " + cc.getCargaHora());
+                            }
+                        }
+                    case 0:
+                        break;
+                    }
+                }
+            }while(opcao != 0);
+        }
+    }
+*/
